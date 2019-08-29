@@ -1,0 +1,231 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+
+    <meta charset="utf-8">
+    <title>
+        Asan Xidmət
+    </title>
+    <!-- <link rel="stylesheet" href="{% static 'main.css' %}"> -->
+    <style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #F6F6F6;
+        }
+
+        .logo {
+            display: block;
+            margin-top: 14px;
+            margin-left: 15px;
+            width: 160px;
+            height: 53px;
+        }
+
+        header {
+            height: 95px;
+            background-color: #2678D8;
+            display: block;
+        }
+
+        hr {
+            border: 6px solid black;
+            width: 100%;
+        }
+
+        .car-place {
+            border-left: 6px solid black;
+            height: 110px;
+            margin-bottom: 10px;
+        }
+
+        .line {
+            background-color: #fff;
+            border-top: 5px dashed black;
+            border-bottom: 5px dashed black;
+        }
+
+        ul {
+            display: block;
+            list-style-type: disc;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+        }
+
+        .f_menu li {
+            display: inline-block;
+            font: 12px/1.5 'Fira Sans', sans-serif;
+            color: #748292;
+            margin-right: 30px;
+        }
+
+        .f_menu li a {
+            font: 12px/1.5 'Fira Sans', sans-serif;
+            color: #748292;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        a,
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 nav">
+                    <a href="{% url 'index' %}">
+                        <img class="logo " src="{% static './images/logo.svg' %}" alt="Asan Xidmət">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    
+    {% block content %}
+    
+    {% endblock content %}
+
+    <footer class="footer">
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-12">
+                    <ul class="f_menu">
+                        <li>
+                            <a href="https://asan.gov.az/az/category/asan-xidmetler">ASAN xidmətlər</a>
+                        </li>
+                        <li>
+                            <a href="https://asan.gov.az/az/category/asan-kommunal">ASAN Kommunal</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://www.asanpay.az/" rel="external">ASAN ödəniş</a>
+                        </li>
+                        <li>
+                            <a href="https://asan.gov.az/az/online-queue">Onlayn növbə</a>
+                        </li>
+                        <li>
+                            <a href="https://asan.gov.az/az/mobile-service">Səyyar ASAN xidmət</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="http://www.asanschool.az/" rel="external">ASAN könüllülük
+                                məktəbi</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:8000/placeapi",
+                dataType: "json",
+                statusCode: {
+                    404: function () {
+                        alert("page not found");
+                    }
+                },
+                success: function (data) {
+                    for (i = 0; i < data.length; i++) {
+                        if (i < 10) {
+                            col = $('<div>');
+                            col.addClass("car-place col-1");
+                            ahref = $('<a>');
+                            ahref.attr('id', data[i].number);
+                            ahref.attr('value', data[i].status);
+                            col.append(ahref);
+                            if (i == 9) {
+                                col.css({ 'border-right': '6px solid black' })
+                            }
+                            image = $('<img>');
+                            image.addClass('w-100  m-md-1 ');
+                            if (ahref.attr('value') == 'full') {
+                                ahref.attr('href', "{% url 'full' %}");
+                                image.attr('src', "{% static './images/img_538354.png' %}");
+                                ahref.append(image);
+                            } else if (ahref.attr('value') == 'brone') {
+                                ahref.attr('href', "{% url 'full' %}");
+                                image.attr('src', "{% static './images/21-512.png' %}");
+                                ahref.append(image);
+                            } else if (ahref.attr('value') == 'free') {
+                                ahref.attr('href', "{% url 'brone' %}");
+                                ahref.addClass('btn btn-success p-1 mt-3');
+                                ahref.html( 'brone parking place');
+                            };
+                            $('#up').append(col);
+                        } else {
+                            col = $('<div>');
+                            col.addClass("car-place col-1");
+                            ahref = $('<a>');
+                            ahref.attr('id', data[i].number);
+                            ahref.attr('value', data[i].status);
+                            ahref.attr('href', 'http://localhost:8000/placeapi');
+                            col.append(ahref);
+                            if (i == 19) {
+                                col.css({ 'border-right': '6px solid black' })
+                            }
+                            image = $('<img>');
+                            image.addClass('w-100  m-md-1 ');
+                            if (ahref.attr('value') == 'full') {
+                                ahref.attr('href', "{% url 'full' %}");
+                                image.attr('src', "{% static './images/img_538354.png' %}");
+                                col.append(image);
+                            } else if (ahref.attr('value') == 'brone') {
+                                ahref.attr('href', "{% url 'full' %}");
+                                image.attr('src', "{% static './images/21-512.png' %}");
+                                ahref.append(image);
+                            } else if (ahref.attr('value') == 'free') {
+                                ahref.attr('href', "{% url 'brone' %}");
+                                ahref.addClass('btn btn-success p-1 mt-3');
+                                ahref.html( 'brone parking place');
+                            };
+                            $('#down').append(col);
+                            console.log(data);
+
+
+                        }
+                    };
+                    $('#down').append($('<hr>'));
+                }
+            });
+
+        });
+
+
+
+    </script>
+</body>
+
+</html>

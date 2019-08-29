@@ -1,0 +1,120 @@
+img{
+    vertical-align:middle;
+    border:0;
+    
+}
+.logo{
+    display:block;
+    margin-top: 14px;
+    margin-left:15px;
+    width: 160px ;
+    height: 53px ;
+}
+header{
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 95px;
+    background-color: #2678D8;
+    display: block;
+}
+.gerb{
+    position: relative;
+    margin-top: 20px;
+    font: 12px/1.5 'Fira Sans',sasn-serif;
+    color: #2678D8;
+    min-height: 30px;
+    padding-left: 32px;
+    transition: all 0.3s;
+}
+.footer{
+
+    height: 100px;
+    background-color: #fff;
+}
+body{
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #F6F6F6;
+}
+
+
+.f_menu{
+    margin: 17px 0 0 0;
+    padding: 0;
+} 
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.f_menu li {
+    display: inline-block;
+    font: 12px/1.5 'Fira Sans',sans-serif;
+    color: #748292;
+    margin-right: 30px;
+}
+.f_menu li a {
+    font: 12px/1.5 'Fira Sans',sans-serif;
+    color: #748292;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+a, a:hover, a:active, a:focus {
+    text-decoration: none;
+}
+.copyrights {
+font: 12px/1.5 'Fira Sans',sans-serif;
+    color: #748292;
+    float: right;
+    margin-right: 20px;
+    margin-bottom: 15px;
+}
+.car{
+    height: 100px;
+    margin-right: 55px;
+    margin-bottom: 10px;
+    width: 83px;
+  
+   
+    
+}
+section{
+    margin-top:80px;
+}
+hr{
+    border: 6px solid black;
+    width:100%;
+}
+.vl{
+   border-left: 3px solid black;
+   border-right: 3px solid black;
+   height: 90px;
+   margin-bottom: 10px;
+   
+}
+
+.line{
+    background-color: #fff;
+    border-top: 5px dashed black;
+    border-bottom: 5px dashed black;
+    }
+    .up{
+        margin-bottom: 40px;
+    }
+    .down{
+        margin-top:40px;
+    }
+body {
+    background-color: #F6F6F6;
+}
+#down-line{
+    margin-top: 0%;
+}

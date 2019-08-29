@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+        .info {
+            padding: .25rem!important;        
+            margin-top: 1rem!important;
+            color: #fff !important;
+            background-color: #28a745 !important;
+            border-color: #28a745 !important;        
+            display: inline-block !important;
+            font-weight: 400 !important;
+         
+            text-align: center !important;
+            vertical-align: middle !important;
+            border: 1px solid transparent !important;
+            font-size: 1rem !important;
+            line-height: 1.5 !important;
+            border-radius: .25rem !important;
+        }
+        .img-1{
+
+            margin-bottom: 15px;
+        }
+   img{
+       margin-top: 15 px;
+     width: 80px;
+     height: 80px;
+    vertical-align: middle;
+    border-style: none;}
+</style>
+     <section>
+        <div class="container">
+            <div class="parking-div">
+                <div id="up" class="up row my-4">
+                    <hr>
+                    <div class="col-1"></div>
+
+                </div>
+                <div class="line-holder row">
+                    <hr class="line">
+                </div>
+                <div id="down" class="down row my-4">
+                    <div class="col-1"></div>
+                </div>
+                    <div class="col-md-6 down">
+              
+                        <ul>
+                            <li>
+                                <img class="img-1"  src="../static/images/img_538354.png">  <p>- Hal-hazırda bu yerdə maşın saxlanılıb</p>
+                            </li>
+                            <li>
+                                <img src="../static/images/21-512.png"> <p>-Hal hazırda bu yer rezerv edilib</p>
+                            </li>
+                            <li >
+                              <p class="info"> Brone Parking place </p> <p>-Hal-hazırda boş olan yer</p>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+   
+{% endblock content %}

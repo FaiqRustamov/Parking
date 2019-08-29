@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<title>Asan Xidmet</title>
+<link href='../packages/core/main.css' rel='stylesheet' />
+<link href='../packages/daygrid/main.css' rel='stylesheet' />
+<script src='../packages/core/main.js'></script>
+<script src='../packages/interaction/main.js'></script>
+<script src='../packages/daygrid/main.js'></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var srcCalendarEl = document.getElementById('source-calendar');
+    var destCalendarEl = document.getElementById('destination-calendar');
+
+    var srcCalendar = new FullCalendar.Calendar(srcCalendarEl, {
+      plugins: [ 'interaction', 'dayGrid' ],
+      editable: true,
+      defaultDate: '2019-06-12',
+      events: [
+        {
+          title: 'event1',
+          start: '2019-06-11T10:00:00',
+          end: '2019-06-11T16:00:00'
+        },
+        {
+          title: 'event2',
+          start: '2019-06-13T10:00:00',
+          end: '2019-06-13T16:00:00'
+        }
+      ],
+      eventLeave: function(info) {
+        console.log('event left!', info.event);
+      }
+    });
+
+    var destCalendar = new FullCalendar.Calendar(destCalendarEl, {
+      plugins: [ 'interaction', 'dayGrid' ],
+      defaultDate: '2019-06-12',
+      editable: true,
+      droppable: true, // will let it receive events!
+      eventReceive: function(info) {
+        console.log('event received!', info.event);
+      }
+    });
+
+    srcCalendar.render();
+    destCalendar.render();
+  });
+
+</script>
+<style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #F6F6F6;
+        }
+
+        .logo {
+            display: block;
+            margin-top: 14px;
+            margin-left: 15px;
+            width: 160px;
+            height: 53px;
+        }
+
+        header {
+            height: 95px;
+            background-color: #2678D8;
+            display: block;
+        }
+
+        hr {
+            border: 6px solid black;
+            width: 100%;
+        }
+
+        .car-place {
+            border-left: 6px solid black;
+            height: 110px;
+            margin-bottom: 10px;
+        }
+
+        .line {
+            background-color: #fff;
+            border-top: 5px dashed black;
+            border-bottom: 5px dashed black;
+        }
+
+        ul {
+            display: block;
+            list-style-type: disc;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+        }
+
+        .f_menu li {
+            display: inline-block;
+            font: 12px/1.5 'Fira Sans', sans-serif;
+            color: #748292;
+            margin-right: 30px;
+        }
+
+        .f_menu li a {
+            font: 12px/1.5 'Fira Sans', sans-serif;
+            color: #748292;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        a,
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: none;
+        }
+
+
+  #source-calendar,
+  #destination-calendar {
+    float: left;
+    width: 600px;
+    margin: 0 20px 20px 0;
+  }
+#source-calendar{
+  margin-left: -50px;
+  margin-top: 10px;
+}
+#destination-calendar{
+  margin-top: 10px;
+
+}
+@media only screen and (min-width: 1024px) {
+  #source-calendar{
+    margin-top: 10px;
+  }
+  #destination-calendar{
+    margin-top: 10px;
+  
+  }
+}
+@media screen and (max-width:768px){
+  #source-calendar{
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  #destination-calendar{
+    margin-top: 10px;
+    margin-left:400px;
+  
+  }
+}
+@media only screen and (min-width: 425px) {
+  #source-calendar{
+    margin-top: 10px;
+  }
+  #destination-calendar{
+    margin-top: 10px;
+  
+  }
+}
+
+</style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-12 col-lg-12 col-sm-12 nav">
+                  
+                        <img class="logo " src="../static/images/logo.svg" alt="Asan Xidmət">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    
+<div class="container">
+  <div class="row">
+    
+      <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6" id='source-calendar'></div>
+  
+      <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6" id='destination-calendar'></div>
+  
+  </div>
+</div>
+<div class="container">
+<div class="row">
+  <div class="col-md-6">
+
+									
+          <div class="col-md-12 form-group">
+            <!--<div class="appointment_date_title">
+              Arzu olunan vaxt										</div>-->
+            <label class="col-xs-3 control-label">Saat/Dəqiqə</label>
+            <div class="appointment_date_cont">
+              <div class="appointment_time_li">
+                
+                
+                <select class="form-control" name="reception_client_time_receipt">
+													
+                  <optgroup label="08:00 - 08:45">
+                    <option value="08:00">08:00</option>
+                    <option value="08:15">08:15</option>
+                    <option value="08:30">08:30</option>
+                    <option value="08:45">08:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="09:00 - 09:45">
+                    <option value="09:00">09:00</option>
+                    <option value="09:15">09:15</option>
+                    <option value="09:30">09:30</option>
+                    <option value="09:45">09:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="10:00 - 10:45">
+                    <option value="10:00">10:00</option>
+                    <option value="10:15">10:15</option>
+                    <option value="10:30">10:30</option>
+                    <option value="10:45">10:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="11:00 - 11:45">
+                    <option value="11:00">11:00</option>
+                    <option value="11:15">11:15</option>
+                    <option value="11:30">11:30</option>
+                    <option value="11:45">11:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="12:00 - 12:45">
+                    <option value="12:00">12:00</option>
+                    <option value="12:15">12:15</option>
+                    <option value="12:30">12:30</option>
+                    <option value="12:45">12:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="13:00 - 13:45">
+                    <option value="13:00">13:00</option>
+                    <option value="13:15">13:15</option>
+                    <option value="13:30">13:30</option>
+                    <option value="13:45">13:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="14:00 - 14:45">
+                    <option value="14:00">14:00</option>
+                    <option value="14:15">14:15</option>
+                    <option value="14:30">14:30</option>
+                    <option value="14:45">14:45</option>
+                  </optgroup>
+                    
+                  <optgroup label="15:00 - 15:45">	
+                    <option value="15:00">15:00</option>
+                    <option value="15:15">15:15</option>
+                    <option value="15:30">15:30</option>
+                    <option value="15:45">15:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="16:00 - 16:45">
+                    <option value="16:00">16:00</option>
+                    <option value="16:15">16:15</option>
+                    <option value="16:30">16:30</option>
+                    <option value="16:45">16:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="17:00 - 17:45">
+                    <option value="17:00">17:00</option>
+                    <option value="17:15">17:15</option>
+                    <option value="17:30">17:30</option>
+                    <option value="17:45">17:45</option>
+                  </optgroup>
+                  
+                </select>
+                <select class="form-control" name="reception_client_time_receipt">
+													
+                  <optgroup label="08:00 - 08:45">
+                    <option value="08:00">08:00</option>
+                    <option value="08:15">08:15</option>
+                    <option value="08:30">08:30</option>
+                    <option value="08:45">08:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="09:00 - 09:45">
+                    <option value="09:00">09:00</option>
+                    <option value="09:15">09:15</option>
+                    <option value="09:30">09:30</option>
+                    <option value="09:45">09:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="10:00 - 10:45">
+                    <option value="10:00">10:00</option>
+                    <option value="10:15">10:15</option>
+                    <option value="10:30">10:30</option>
+                    <option value="10:45">10:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="11:00 - 11:45">
+                    <option value="11:00">11:00</option>
+                    <option value="11:15">11:15</option>
+                    <option value="11:30">11:30</option>
+                    <option value="11:45">11:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="12:00 - 12:45">
+                    <option value="12:00">12:00</option>
+                    <option value="12:15">12:15</option>
+                    <option value="12:30">12:30</option>
+                    <option value="12:45">12:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="13:00 - 13:45">
+                    <option value="13:00">13:00</option>
+                    <option value="13:15">13:15</option>
+                    <option value="13:30">13:30</option>
+                    <option value="13:45">13:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="14:00 - 14:45">
+                    <option value="14:00">14:00</option>
+                    <option value="14:15">14:15</option>
+                    <option value="14:30">14:30</option>
+                    <option value="14:45">14:45</option>
+                  </optgroup>
+                    
+                  <optgroup label="15:00 - 15:45">	
+                    <option value="15:00">15:00</option>
+                    <option value="15:15">15:15</option>
+                    <option value="15:30">15:30</option>
+                    <option value="15:45">15:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="16:00 - 16:45">
+                    <option value="16:00">16:00</option>
+                    <option value="16:15">16:15</option>
+                    <option value="16:30">16:30</option>
+                    <option value="16:45">16:45</option>
+                  </optgroup>
+                  
+                  <optgroup label="17:00 - 17:45">
+                    <option value="17:00">17:00</option>
+                    <option value="17:15">17:15</option>
+                    <option value="17:30">17:30</option>
+                    <option value="17:45">17:45</option>
+                  </optgroup>
+                  
+                </select>
+
+
+
+              </div>
+              
+              <button type="submit" name="reception_button" class="btn btn-danger">Qəbula yazıl</button>
+
+            </div>
+            
+          </div>
+          
+
+  </div>
+  
+  
+    
+    
+      </div>
+</div>
+</div>
+  <footer class="footer">
+      <div class="row">
+          <div class="container">
+              <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                  <ul class="f_menu">
+                      <li>
+                          <a href="https://asan.gov.az/az/category/asan-xidmetler">ASAN xidmətlər</a>
+                      </li>
+                      <li>
+                          <a href="https://asan.gov.az/az/category/asan-kommunal">ASAN Kommunal</a>
+                      </li>
+                      <li>
+                          <a target="_blank" href="https://www.asanpay.az/" rel="external">ASAN ödəniş</a>
+                      </li>
+                      <li>
+                          <a href="https://asan.gov.az/az/online-queue">Onlayn növbə</a>
+                      </li>
+                      <li>
+                          <a href="https://asan.gov.az/az/mobile-service">Səyyar ASAN xidmət</a>
+                      </li>
+                      <li>
+                          <a target="_blank" href="http://www.asanschool.az/" rel="external">ASAN könüllülük
+                              məktəbi</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </footer>
+  <script>
+    $( document ).ready(function() {
+    
+      $(".cs_reception_button").click(function(){
+        
+        var reception_docword_id = $(this).attr('rel');
+        $("#reception_docwork_clinic_id").val(reception_docword_id);
+        
+      });
+    
+    
+      $(".cs_about_panel").click(function(){
+        
+        $(".cs_about_panel_text").slideToggle('slow');
+        
+      });
+  </script>
+</body>
+</html>
